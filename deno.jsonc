@@ -1,0 +1,63 @@
+{
+  // 🌐 Version du projet
+  "version": "0.0.0-beta.0",
+
+  // 🏁 Point d'entrée principal
+  "main": "src/app/rest/main.ts",
+
+  // 🚀 Tasks Deno disponibles (via `deno task <name>`)
+  "tasks": {
+    "docs:dev": "npx vitepress dev docs",
+    "docs:build": "npx vitepress build docs",
+    "dev": "deno serve --unstable-kv --allow-all ./src/app/rest/main.ts",                   // Lancer en mode dev
+    "serve": "deno serve --unstable-kv --allow-all ./src/app/rest/main.ts",              // Serveur avec deno serve
+    "test:dev": "deno test --unstable-kv --allow-all --watch",                           // Tests avec watch en dev
+    "test:dev:coverage": "deno test --unstable-kv --allow-all --coverage && deno coverage", // Tests + couverture en local
+    "test:ci": "deno test --unstable-kv --allow-all --reporter=junit --junit-path=./.dist/report.xml --coverage" // CI: tests + rapport JUnit + couverture
+  },
+
+  // ⚙️ Options du compilateur TypeScript
+  "compilerOptions": {
+    "strict": true                                                         // Mode strict activé pour plus de rigueur
+  },
+
+  // 🛡️ Linting configuration
+  "lint": {
+    "include": ["src/"],                                                   // Inclut uniquement le dossier src
+    "exclude": ["src/fixtures/**/*.ts"],                                   // Ignore les fichiers de fixtures
+    "rules": {
+      "tags": ["recommended"],                                             // Règles recommandées Deno
+      "include": ["ban-untagged-todo"],                                    // Interdit les TODO sans tag
+      "exclude": ["no-unused-vars"]                                        // Autorise temporairement les vars inutilisées
+    }
+  },
+
+  // 🧪 Configuration des tests
+  "test": {
+    "include": ["tests/", "src/**/*.test.ts"],                              // Inclut le dossier tests et les tests dans src
+    "exclude": ["src/testdata/", "src/fixtures/**/*.ts"]                   // Ignore les données de test et fixtures
+  },
+
+  // 🖋️ Formatage automatique
+  "fmt": {
+    "useTabs": true,                                                       // Utilise des tabulations (pas des espaces)
+    "lineWidth": 80,                                                       // Largeur de ligne max 80
+    "indentWidth": 4,                                                      // Indentation = 4 espaces (ou 1 tab)
+    "semiColons": false,                                                   // Pas de point-virgule à la fin des lignes
+    "singleQuote": true,                                                   // Utilise des guillemets simples
+    "proseWrap": "preserve",                                               // Préserve les retours à la ligne dans les textes
+    "include": ["src/"],                                                   // Formate uniquement src/
+    "exclude": ["src/testdata/", "src/fixtures/**/*.ts"]                   // Ignore les jeux de test/fixtures
+  },
+
+  // 🚫 Exclusions globales
+  "exclude": [
+    "dist/", "./.dist"                                                     // Ignore les dossiers de build/dist
+  ],
+
+  // 📦 Configuration des modules Node (auto = géré automatiquement par Deno)
+  "nodeModulesDir": "auto",
+
+  // 🔗 Import map (pour mapper les dépendances externes)
+  "importMap": "import-map.json"
+}

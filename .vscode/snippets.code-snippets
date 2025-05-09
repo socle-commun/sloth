@@ -1,0 +1,59 @@
+{
+    "// Preprocessor Commands": {
+      "prefix": "//",
+      "body": [
+        "//☄️${1|debug,random,speak,delay,ignore,todo|}${2}"
+      ],
+      "description": "Ajoute une commande de préprocesseur"
+    },
+    "// Debug Preprocessor": {
+      "prefix": "//debug",
+      "body": [
+        "//☄️debug"
+      ],
+      "description": "Ajoute un log et un try/catch autour d'une fonction"
+    },
+    "// Random Preprocessor": {
+      "prefix": "//random",
+      "body": [
+        "//☄️random.${1|person.fullName,internet.email,internet.password|}"
+      ],
+      "description": "Génère une valeur aléatoire"
+    },
+    "// Speak Preprocessor": {
+      "prefix": "//speak",
+      "body": [
+        "//☄️speak"
+      ],
+      "description": "Ajoute une commande de synthèse vocale"
+    },
+    "// Ignore Preprocessor": {
+      "prefix": "//ignore",
+      "body": [
+        "//☄️!${1|dev,prod|}"
+      ],
+      "description": "Ignore une ligne selon l'environnement"
+    },
+    "// Delay Preprocessor": {
+      "prefix": "//delay",
+      "body": [
+        "//☄️delay(${1:1000})"
+      ],
+      "description": "Ajoute un délai d'attente"
+    },
+    "// Info": {
+      "prefix": "//pin",
+      "body": [
+        "//📌 ${1:info}"
+      ],
+      "description": "Indique une information"
+    },
+    "// TODO Preprocessor": {
+      "prefix": "//todo",
+      "body": [
+        "//☄️todo: ${1:Ajouter une tâche}"
+      ],
+      "description": "Ajoute une annotation TODO"
+    }
+  }
+  

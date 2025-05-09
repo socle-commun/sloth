@@ -1,0 +1,24 @@
+{
+  "deno.enable": true,
+  "deno.suggest.imports": true,
+  "typescript.suggest.completeFunctionCalls": true,
+  "typescript.suggest.autoImports": true,
+  "javascript.suggest.autoImports": true,
+  "javascript.suggest.completeFunctionCalls": true,
+  "editor.quickSuggestions": {
+    "other": true,
+    "comments": true,
+    "strings": true
+  },
+  "editor.suggest.showSnippets": true,
+  "editor.tabCompletion": "on",
+  "editor.wordBasedSuggestions": "off",
+  "files.associations": {
+    "*.ts": "typescript",
+    "*.js": "javascript"
+  },
+  "editor.snippetSuggestions": "top",
+  "deno.suggest.imports.hosts": {
+    "https://deno.land": false
+  }
+}
