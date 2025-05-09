@@ -36,8 +36,9 @@ export default defineConfig({
       '/features/': [
         { text: 'Introduction', link: '/features/' },
         { text: 'Env', link: '/features/env' },
+        { text: 'Deep Merge', link: '/features/deep-merge' },
         { text: 'Rest framework', link: '/features/rest-api-framework' },
-        { text: 'Security', link: '/features/security' }
+        { text: 'Key value storage', link: '/features/key-value-storage' }
       ]
     }
   }

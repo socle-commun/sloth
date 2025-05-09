@@ -1,78 +1,104 @@
-Voici le fichier **ai.md** mis à jour, incluant la mention claire de la feature **Domain Driven Routing** :
+# 🧠 AI Project Instruction: Sloth 🦥
+
+This document is intended for **AI agents** assisting in the development, maintenance, or analysis of the **Sloth** project.
 
 ---
 
-# 🧠 ai.md — Contexte IA
+## 📌 Project Overview
 
-Ce projet est un **template Deno REST API** conçu pour être :
-✅ lisible, analysable et modifiable par une intelligence artificielle
-✅ organisé avec des conventions claires et typées
-✅ accompagné d’une documentation cohérente et d’une architecture modulaire
+Sloth is a **modular library** for the Deno ecosystem.  
+It aims to provide **lightweight**, **flexible**, and **highly typed** building blocks for:
+- 🌐 REST APIs
+- 🛠️ Utilities (low-level functions)
+- ⚙️ Typed KV management
+- 🔒 Middlewares
+- And more…
 
----
-
-## 📌 Résumé du projet
-
-* **Nom :** example-deno-server
-* **Type :** REST API avec Deno + Hono
-* **Langage :** TypeScript (strict)
-* **Modules clés :**
-
-  * `@hono/zod-openapi` → génération doc OpenAPI
-  * `Deno KV` → rate limiter, stockage léger
-  * **Domain Driven Routing** → architecture modulaire par domaine métier
-  * Middlewares maison → auth, sécurité, gestion d’environnement
+Modules are designed to work **independently** and follow a **strict TypeScript** codebase.
 
 ---
 
-## 📂 Structure principale
+## 🗂️ Key Project Structure
 
-| Dossier                | Contenu                                                                        |
-| ---------------------- | ------------------------------------------------------------------------------ |
-| `src/app/rest`         | Entrée API, gestion routes, middlewares, discovery automatique des domaines    |
-| `src/app/rest/domains` | Domaines métiers organisés selon la logique **Domain Driven Routing**          |
-| `src/ext/deno`         | Outils internes Deno (KV, utilitaires)                                         |
-| `tests/e2e`            | Tests end-to-end                                                               |
-| `.github/workflows`    | Workflows CI/CD GitHub                                                         |
-| `doc/features`         | Documentation détaillée par feature, dont `domain-driven-routing.md` (présent) |
-
----
-
-## 🔒 Sécurité
-
-* Authentification : **Bearer token** (`BEARER_TOKEN`)
-* Headers : protection XSS, nosniff, frame, HSTS
-* Limitation : **kvRateLimiter** → 100 req/min par IP
-* CORS : restreint selon environnement
+| Folder / Area           | Purpose                                           |
+| ----------------------- | ------------------------------------------------- |
+| `src/deno`             | Deno-specific modules (KV, environment, system)    |
+| `src/utils`           | Generic utilities reusable across environments      |
+| `src/apps`            | Ready-to-use application layers (REST, WebSocket)   |
+| `tests/`              | End-to-end and unit tests for each module           |
+| `docs/`               | Detailed documentation, examples, usage guides      |
 
 ---
 
-## 🔗 Points importants IA
+## 🛡️ Core Principles
 
-✅ Le projet expose les métadonnées dans `deno.jsonc` (`version`, etc.)
-✅ La configuration dynamique est centralisée dans `env.ts`
-✅ Les middlewares sont typés et organisés proprement
-✅ Les routes sont injectées dynamiquement par découverte des **Domaines** (Domain Driven Routing)
-✅ Chaque domaine retourne un descripteur unifié (`Domain`), garantissant l’extensibilité et la modularité
-
----
-
-## 🛠️ Conventions et pratiques
-
-* Tous les nouveaux modules doivent être typés (TypeScript strict)
-* Toute feature nouvelle doit être documentée séparément sous `doc/features/`
-* Les commits suivent une logique simple et claire, sans surcharge
-* Les tests E2E sont prioritaires pour garantir la stabilité
-* Les routes doivent être ajoutées via le système **Domain Driven Routing** pour rester alignées avec l’architecture
+- **Strict typing:** Always use TypeScript’s strict mode.
+- **Composable design:** Modules should work standalone or be composed.
+- **Minimal coupling:** Avoid unnecessary interdependencies between modules.
+- **Explicitness:** Prefer explicit exports, clear function signatures, and documented interfaces.
+- **Performance-conscious:** Optimize for lightweight use cases and Deno runtime.
 
 ---
 
-## 🎯 Objectif IA
+## 🤖 AI Role and Expectations
 
-> **Ta mission :**
-> Analyser, documenter, améliorer, ou étendre ce projet sans casser ses garanties de sécurité, ses conventions typées, et son architecture modulaire.
-> Tu dois également veiller à maintenir l’intégrité du modèle **Domain Driven Routing** et à respecter les conventions documentées.
+When interacting with this project, the AI should:
+✅ Respect the modular boundaries (don’t assume global imports).  
+✅ Provide code suggestions that **fit the module context** (Deno vs Node vs agnostic).  
+✅ Follow the emoji-commit convention for commit messages.  
+✅ Suggest improvements that preserve or enhance **strict typing** and **test coverage**.  
+✅ Identify opportunities to add **examples** or **documentation** for under-documented modules.
 
 ---
 
-💬 Si tu veux, je peux aussi générer un fichier complémentaire `ai.md` spécifique pour guider l’IA dans l’ajout de nouveaux domaines métiers ou l’extension des schémas actuels. Dis-moi ! 🚀
+## 🗺️ Roadmap Hints
+
+AI should prioritize:
+- Preparing modules for Deno Land publication.
+- Ensuring clear API boundaries and stable public interfaces.
+- Spotting areas where micro-modules can be extracted or generalized.
+- Supporting multi-environment compatibility (Deno, Node, possibly WASM).
+
+---
+
+## 🛠️ Conventions and Utilities
+
+- Use `KvSlot` for typed Deno KV management.
+- Use `deepMerge` for deep object merges.
+- REST apps should be built using `Domain` and `Route` classes, not hardcoded paths.
+- All modules should include:
+    - Type annotations
+    - Minimal working examples
+    - Associated tests in the `tests/` folder
+
+---
+
+## 📜 Commit Convention (emoji-commit)
+
+| Emoji  | Meaning                           |
+| ------ | --------------------------------- |
+| ✨     | New feature                       |
+| 🐛     | Bug fix                           |
+| ♻️     | Refactor                          |
+| 📚     | Documentation                     |
+| ✅     | Add or improve tests              |
+| ⚡     | Performance improvement           |
+| 🚀     | Deployment / release changes      |
+| 🔧     | Configuration / tooling changes   |
+
+AI should use these emojis when preparing or suggesting commits.
+
+---
+
+## 📣 Final Reminder
+
+The tone and philosophy of Sloth are:
+- **Simple, robust, and clean.**
+- No unnecessary complexity.
+- Serve as a reliable, lightweight toolbelt.
+
+AI suggestions should align with these values and aim for **quality over quantity**.
+
+---
+
+🦥 *“Slow and steady, we build reliable tools.”*
