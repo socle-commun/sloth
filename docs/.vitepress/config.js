@@ -35,11 +35,9 @@ export default defineConfig({
     sidebar: {
       '/features/': [
         { text: 'Introduction', link: '/features/' },
-        { text: 'Security', link: '/features/security' },
-        { text: 'OpenAPI', link: '/features/openapi' },
-        { text: 'Documentation', link: '/features/documentation' },
         { text: 'Env', link: '/features/env' },
-        { text: 'Github Workflows', link: '/features/workflows' },
+        { text: 'Rest framework', link: '/features/rest-api-framework' },
+        { text: 'Security', link: '/features/security' }
       ]
     }
   }

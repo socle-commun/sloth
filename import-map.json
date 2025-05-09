@@ -1,5 +1,13 @@
 {
   "imports": {
-    "@/": "./src/"
+    "@/": "./src/",
+    "zod": "npm:zod",
+    "dotenv": "https://deno.land/std@0.224.0/dotenv/mod.ts",
+    "path": "https://deno.land/std@0.224.0/path/mod.ts",
+    "$import": "https://deno.land/x/sloth_import@1.1.0/mod.ts",
+    "@hono/zod-openapi": "npm:@hono/zod-openapi",
+    "swagger-themes": "npm:swagger-themes",
+    "hono/cors": "npm:hono/cors",
+    "hono": "https://deno.land/x/hono@v4.3.7/mod.ts"
   }
 }

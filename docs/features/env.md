@@ -1,89 +1,147 @@
-# 🌿 Environnement et Version
+# 📄 `getEnv`
 
-Cette page présente la **gestion des variables d’environnement** et de la version du projet.
-
-Vous y trouverez :
-✅ Les priorités de chargement (`.env`, système, valeur par défaut)
-✅ Un tableau des variables principales utilisées
-✅ La méthode pour lire dynamiquement la version dans la documentation
-✅ La méthode recommandée pour ajouter des variables d’environnement avec typage
-
-Indispensable pour configurer vos environnements (dev, prod) et garder un projet bien aligné.
+A lightweight utility for retrieving environment variables in Deno, supporting both local `.env` files (for development) and system environment variables (for production).
 
 ---
 
-## ⚙️ Priorité des valeurs
+## ✨ Features
 
-1️⃣ `.env` local (en dev)
-2️⃣ `Deno.env` système (en prod)
-3️⃣ Valeur par défaut passée au code
-
----
-
-## 📋 Variables principales
-
-| Variable       | Description                                 |
-| -------------- | ------------------------------------------- |
-| `APP_NAME`     | Nom affiché dans les logs                   |
-| `ENV`          | Environnement (`production`, `development`) |
-| `APP_PORT`     | Port d’écoute                               |
-| `APP_URL`      | URL publique                                |
-| `BEARER_TOKEN` | Token pour l’auth Bearer                    |
-| `DOC_PATH`     | Endpoint OpenAPI (par défaut `/doc`)        |
-| `UI_PATH`      | Endpoint Swagger UI (par défaut `/ui`)      |
+✅ Loads `.env` variables using `deno_std/dotenv`
+✅ Falls back to `Deno.env.get()` for system environment
+✅ Supports default fallback values
+✅ Safe to use even if `.env` is missing (no crashes)
+✅ Designed for Deno projects
 
 ---
 
-## 🏷️ Version projet
-
-Le fichier `deno.jsonc` contient le champ `version`, lu automatiquement pour l’afficher dans la documentation.
-
-> **Astuce** : Voir la fonction `getProjectVersion()` pour comprendre le chargement dynamique.
-
----
-
-## 🛠️ Implémentation détaillée
-
-Le chargement des variables d’environnement est centralisé dans :
-
-```
-/ext/deno/env/mod.ts
-```
-
-### Points clés
-
-✅ On utilise `std/dotenv` pour charger les valeurs locales.
-✅ Le système ignore proprement l’absence d’un fichier `.env`.
-✅ Le type `$ENV` définit toutes les clés connues.
-✅ La fonction générique `getEnv<$ENV>()` applique la priorité :
-`.env local` → `Deno.env` système → valeur par défaut.
-
----
-
-### Exemple d’utilisation
+## 📦 Installation
 
 ```ts
-import getEnv from '@/ext/deno/env/mod.ts'
-
-type ENV = 'APP_NAME' | 'MY_NEW_KEY';
-
-// Lire une valeur existante
-const appName = getEnv<ENV>("APP_NAME", "Unknown App")
-
-// Lire une nouvelle clé ajoutée
-const newFeatureFlag = getEnv<ENV>("MY_NEW_KEY", "false")
+import getEnv from './get-env.ts';
 ```
-
-✅ **Pourquoi utiliser `<ENV>` ?**
-
-* Fournit un typage strict pour les noms de clé.
-* Évite les erreurs de frappe.
-* Rapproche automatiquement le code et la documentation.
 
 ---
 
-✅ **Bonnes pratiques**
+## 🔧 How it works
 
-* Toujours utiliser un type `ENV` local au fichier pour référencer vos clés.
-* Ne pas utiliser `Deno.env.get()` directement.
-* Documenter chaque nouvelle variable dans `.env.example` (commentée par défaut si pertinent).
+* **Priority order:**
+  1️⃣ `.env` file (loaded at startup, dev mode)
+  2️⃣ `Deno.env.get()` (system environment, prod mode)
+  3️⃣ Supplied default value (if provided)
+  4️⃣ `undefined` (if not found anywhere)
+
+* Uses the Deno standard library’s `dotenv` module to parse `.env`.
+
+* Automatically ignores `MissingEnvVarsError` if no `.env` file exists.
+
+---
+
+## 🚀 Usage
+
+```ts
+const port = getEnv('PORT', '3000');
+console.log(`Server running on port ${port}`);
+```
+
+Without default:
+
+```ts
+const token = getEnv('API_TOKEN');
+if (!token) throw new Error('Missing API_TOKEN!');
+```
+
+---
+
+## 🔍 Example
+
+Given a `.env` file:
+
+```
+PORT=8080
+MODE=development
+```
+
+Code:
+
+```ts
+const port = getEnv('PORT', '3000');  // ➔ '8080'
+const mode = getEnv('MODE');          // ➔ 'development'
+const missing = getEnv('UNKNOWN', 'default');  // ➔ 'default'
+```
+
+In production (without `.env`), it checks system environment:
+
+```bash
+$ DENO_ENV=production deno run app.ts
+```
+
+---
+
+## ⚠️ Notes
+
+* Only string values are supported.
+* `undefined` is returned if the key is missing and no default is provided.
+* This module **does not mutate** `Deno.env` — it only reads.
+* For secure environments, avoid hardcoding sensitive values.
+
+---
+
+Bien sûr ! Voici un exemple **plus simple et clair** d’utilisation avancée avec l’opérateur diamant (`<T>`) :
+
+---
+
+## 💎 Advanced Example with Type Parameter
+
+```ts
+import getEnv from './get-env.ts';
+
+// Define allowed keys using a union type
+type MyEnvKeys = 'APP_NAME' | 'APP_PORT' | 'ENV';
+
+// Use the diamond operator <MyEnvKeys> to hint TypeScript
+const appName = getEnv<MyEnvKeys>('APP_NAME', 'DefaultApp');
+const port = getEnv<MyEnvKeys>('APP_PORT', '8000');
+const environment = getEnv<MyEnvKeys>('ENV', 'development');
+
+console.log(`🚀 ${appName} | Port: ${port} | Mode: ${environment}`);
+```
+
+---
+
+### What this does
+
+✅ **Type safety** → You can’t accidentally pass a wrong key.
+✅ **Better autocomplete** → Your editor will suggest only `'APP_NAME'`, `'APP_PORT'`, or `'ENV'`.
+✅ **Clean fallback** → Defaults are still supported.
+
+---
+
+### Example Output
+
+If `.env` contains:
+
+```
+APP_NAME=MyAdvancedApp
+APP_PORT=4000
+ENV=production
+```
+
+You’ll get:
+
+```
+🚀 MyAdvancedApp | Port: 4000 | Mode: production
+```
+
+If some keys are missing:
+
+```
+🚀 DefaultApp | Port: 8000 | Mode: development
+```
+
+---
+
+### Why use `<MyEnvKeys>`?
+
+✅ Helps **document** which environment variables your app uses.
+✅ Reduces **typos** and **runtime errors**.
+✅ Makes your code **self-explanatory**.
