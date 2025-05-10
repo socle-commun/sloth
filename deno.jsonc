@@ -1,6 +1,16 @@
 {
   // 🌐 Version du projet
-  "version": "0.0.0-beta.0",
+  "name": "@socle-commun/sloth",
+  "version": "0.1.0",
+
+  "exports": {
+    "./kv-slot": "./src/deno/kv/slot.class.ts",
+    "./load": "./src/deno/env/load.ts",
+    "./deep-merge": "./src/utils/deep-merge.ts",
+    "./rest-app-domain": "./src/apps/rest/domain.class.ts",
+    "./rest-app-route": "./src/apps/rest/route.class.ts",
+    "./rest-app": "./src/apps/rest/mod.ts"
+  },
 
   // 🏁 Point d'entrée principal
   "main": "src/app/rest/main.ts",
@@ -59,5 +69,7 @@
   "nodeModulesDir": "auto",
 
   // 🔗 Import map (pour mapper les dépendances externes)
-  "importMap": "import-map.json"
+  "importMap": "import-map.json",
+  "repository": "https://github.com/socle-commun/sloth",
+  "license": "MIT"
 }
