@@ -1,6 +1,6 @@
 import { ZodObject, ZodType } from 'zod';
 import { Context } from 'hono';
-import { RouteConfig } from 'npm:@hono/zod-openapi'
+import { RouteConfig } from '@hono/zod-openapi'
 import type { Domain } from './domain.class.ts'
 import createRoute from './utils/create-route.ts'
 

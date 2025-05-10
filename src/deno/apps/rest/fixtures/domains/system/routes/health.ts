@@ -1,4 +1,4 @@
-import { z } from 'npm:zod'
+import { z } from 'zod'
 import { Domain } from '@/deno/apps/rest/domain.class.ts'
 import { Context } from 'hono'
 
