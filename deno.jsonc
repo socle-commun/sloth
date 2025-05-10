@@ -4,12 +4,12 @@
   "version": "0.1.0",
 
   "exports": {
-    "./kv-slot": "./src/deno/kv/slot.class.ts",
-    "./load": "./src/deno/env/load.ts",
+    "./kv-slot": "./src/deno/utils/kv/slot.class.ts",
+    "./load": "./src/deno/utils/env/load.ts",
     "./deep-merge": "./src/utils/deep-merge.ts",
-    "./rest-app-domain": "./src/apps/rest/domain.class.ts",
-    "./rest-app-route": "./src/apps/rest/route.class.ts",
-    "./rest-app": "./src/apps/rest/mod.ts"
+    "./rest-app-domain": "./src/deno/apps/rest/domain.class.ts",
+    "./rest-app-route": "./src/deno/apps/rest/route.class.ts",
+    "./rest-app": "./src/deno/apps/rest/mod.ts"
   },
 
   // 🏁 Point d'entrée principal
