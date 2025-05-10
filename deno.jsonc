@@ -69,5 +69,7 @@
   "nodeModulesDir": "auto",
 
   // 🔗 Import map (pour mapper les dépendances externes)
-  "importMap": "import-map.json"
+  "importMap": "import-map.json",
+  "repository": "https://github.com/socle-commun/sloth",
+  "license": "MIT"
 }
