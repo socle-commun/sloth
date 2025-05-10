@@ -6,99 +6,105 @@ This document is intended for **AI agents** assisting in the development, mainte
 
 ## 📌 Project Overview
 
-Sloth is a **modular library** for the Deno ecosystem.  
-It aims to provide **lightweight**, **flexible**, and **highly typed** building blocks for:
-- 🌐 REST APIs
-- 🛠️ Utilities (low-level functions)
-- ⚙️ Typed KV management
-- 🔒 Middlewares
-- And more…
+**Sloth** is a **modular Deno library** providing **lightweight**, **highly typed**, and **independent** building blocks for:
 
-Modules are designed to work **independently** and follow a **strict TypeScript** codebase.
+* 🌐 REST APIs
+* 🛠️ Low-level utilities
+* ⚙️ Typed Deno KV management
+* 🔒 Middleware layers
+* *(and more evolving micro-modules)*
+
+Each module is **standalone** — no global `mod.ts` entry — and designed with **strict TypeScript**.
 
 ---
 
 ## 🗂️ Key Project Structure
 
-| Folder / Area           | Purpose                                           |
-| ----------------------- | ------------------------------------------------- |
-| `src/deno`             | Deno-specific modules (KV, environment, system)    |
-| `src/utils`           | Generic utilities reusable across environments      |
-| `src/apps`            | Ready-to-use application layers (REST, WebSocket)   |
-| `tests/`              | End-to-end and unit tests for each module           |
-| `docs/`               | Detailed documentation, examples, usage guides      |
+| Folder / Area   | Purpose                                          |
+| --------------- | ------------------------------------------------ |
+| `src/deno`      | Deno-specific modules (KV, `.env`, system tools) |
+| `src/utils`     | General-purpose utilities, cross-environment     |
+| `src/apps`      | Ready-to-use app layers (REST, WebSocket, CLI)   |
+| `tests/`        | Unit and integration tests per module            |
+| *(no `mod.ts`)* | All modules imported individually                |
 
 ---
 
 ## 🛡️ Core Principles
 
-- **Strict typing:** Always use TypeScript’s strict mode.
-- **Composable design:** Modules should work standalone or be composed.
-- **Minimal coupling:** Avoid unnecessary interdependencies between modules.
-- **Explicitness:** Prefer explicit exports, clear function signatures, and documented interfaces.
-- **Performance-conscious:** Optimize for lightweight use cases and Deno runtime.
+* ✅ **Strict typing**: Always TypeScript strict mode.
+* ✅ **Composable design**: Modules work alone or in composition.
+* ✅ **Minimal coupling**: No hidden or implicit dependencies.
+* ✅ **Explicitness**: Clear exports, clear signatures, documented APIs.
+* ✅ **Performance-conscious**: Minimal footprint, Deno-first optimizations.
 
 ---
 
 ## 🤖 AI Role and Expectations
 
-When interacting with this project, the AI should:
-✅ Respect the modular boundaries (don’t assume global imports).  
-✅ Provide code suggestions that **fit the module context** (Deno vs Node vs agnostic).  
-✅ Follow the emoji-commit convention for commit messages.  
-✅ Suggest improvements that preserve or enhance **strict typing** and **test coverage**.  
-✅ Identify opportunities to add **examples** or **documentation** for under-documented modules.
+When assisting this project, AI should:
+✅ Respect modular boundaries — **no assumptions of global imports**.
+✅ Provide context-aware suggestions (Deno vs Node vs universal).
+✅ Follow the **emoji-commit** convention for commit proposals.
+✅ Suggest improvements that **enhance strict typing and test coverage**.
+✅ Identify and flag areas needing **examples or clearer documentation**.
 
 ---
 
 ## 🗺️ Roadmap Hints
 
 AI should prioritize:
-- Preparing modules for Deno Land publication.
-- Ensuring clear API boundaries and stable public interfaces.
-- Spotting areas where micro-modules can be extracted or generalized.
-- Supporting multi-environment compatibility (Deno, Node, possibly WASM).
+
+* Preparing stable, minimal modules for Deno Land publication.
+* Ensuring clear, durable public APIs.
+* Identifying opportunities for reusable micro-modules.
+* Supporting multi-environment potential (Deno, Node, WASM).
 
 ---
 
 ## 🛠️ Conventions and Utilities
 
-- Use `KvSlot` for typed Deno KV management.
-- Use `deepMerge` for deep object merges.
-- REST apps should be built using `Domain` and `Route` classes, not hardcoded paths.
-- All modules should include:
-    - Type annotations
-    - Minimal working examples
-    - Associated tests in the `tests/` folder
+* Use `KvSlot` for strongly typed Deno KV.
+* Use `deepMerge` for safe object merging.
+* REST layers should use **domain + route abstractions**, avoiding hardcoded endpoints.
+* All modules must include:
+
+  * Strong type annotations
+  * Minimal working examples
+  * Associated unit tests in `tests/`
 
 ---
 
 ## 📜 Commit Convention (emoji-commit)
 
-| Emoji  | Meaning                           |
-| ------ | --------------------------------- |
-| ✨     | New feature                       |
-| 🐛     | Bug fix                           |
-| ♻️     | Refactor                          |
-| 📚     | Documentation                     |
-| ✅     | Add or improve tests              |
-| ⚡     | Performance improvement           |
-| 🚀     | Deployment / release changes      |
-| 🔧     | Configuration / tooling changes   |
+| Emoji | Meaning                    |
+| ----- | -------------------------- |
+| ✨     | New feature                |
+| 🐛    | Bug fix                    |
+| ♻️    | Refactor                   |
+| 📚    | Documentation              |
+| ✅     | Add or improve tests       |
+| ⚡     | Performance improvement    |
+| 🚀    | Deployment or release prep |
+| 🔧    | Config or tooling changes  |
 
-AI should use these emojis when preparing or suggesting commits.
+AI **must** include these emojis when suggesting commits.
 
 ---
 
 ## 📣 Final Reminder
 
-The tone and philosophy of Sloth are:
-- **Simple, robust, and clean.**
-- No unnecessary complexity.
-- Serve as a reliable, lightweight toolbelt.
+The **philosophy** of Sloth:
 
-AI suggestions should align with these values and aim for **quality over quantity**.
+* Simple.
+* Robust.
+* Clean.
+* Minimal.
+
+AI suggestions must align with these values, aiming for **quality over quantity**.
 
 ---
 
-🦥 *“Slow and steady, we build reliable tools.”*
+<div align="center">
+🦥 *Slow and steady, we build reliable tools.*
+</div>

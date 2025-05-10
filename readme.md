@@ -6,50 +6,49 @@
 [![Docs](https://img.shields.io/badge/docs-online-blue)](https://socle-commun.github.io/sloth)
 [![Coverage](https://img.shields.io/codecov/c/github/socle-commun/sloth)](https://codecov.io/gh/socle-commun/sloth)
 
-**Sloth** is a **modular library for Deno**, built to be lightweight, flexible, and adaptable for **any environment**:
+**Sloth** is a **modular Deno library** designed to be lightweight, flexible, and adaptable for **any environment**:
 🌐 REST APIs, 🛠️ low-level utilities, ⚙️ KV management, 🔒 middlewares, and much more.
 
 ---
 
 ### 🚀 **Why Sloth?**
 
-✅ **Modular imports** → grab only what you need, no bulky entrypoints.
-✅ **Environment- and feature-focused** → organized by platform (`deno`, `node`, etc.) and functional domains (`kv`, `utils`, `rest`, …).
-✅ **Strict TypeScript** → full typings for safety, IDE autocompletion, and fewer runtime surprises.
-✅ **Minimal by design** → no unnecessary bloat, no forced dependencies.
+✅ **Pick only what you need** → no bulky global `mod.ts` entry.
+✅ **Environment- and feature-organized** → clean separation by platform (`deno`, `node`) and domain (`kv`, `utils`, `rest`, …).
+✅ **Strict TypeScript** → full typings, safe autocompletion, fewer runtime surprises.
+✅ **Minimal by design** → no unnecessary bloat, no hidden dependencies.
 
 ---
 
 ## 📦 **Installation**
 
-```bash
-deno add https://deno.land/x/sloth@<version>/mod.ts
-```
-
-Or **import specific modules** directly:
+Sloth does **not** expose a global `mod.ts`.
+Instead, **import only the modules you want**:
 
 ```ts
 import { KvSlot } from 'https://deno.land/x/sloth@<version>/src/deno/kv/slot.class.ts'
 import { deepMerge } from 'https://deno.land/x/sloth@<version>/src/utils/deep-merge.ts'
 ```
 
+Use `import_map.json` if you prefer cleaner aliases (example provided in the docs).
+
 ---
 
 ## 🏗️ **Project Structure**
 
-| Folder      | Purpose                                                       |
-| ----------- | ------------------------------------------------------------- |
-| `src/deno`  | Deno-specific modules (e.g., KV, environment, system helpers) |
-| `src/utils` | Generic utilities, usable across any environment              |
-| `src/apps`  | Reusable app layers (e.g., REST APIs, WebSocket handlers)     |
-| `tests/`    | Full suite of E2E and unit tests                              |
-| `docs/`     | Detailed per-module documentation                             |
+| Folder          | Purpose                                                  |
+| --------------- | -------------------------------------------------------- |
+| `src/deno`      | Deno-specific modules (KV, `.env` helpers, system tools) |
+| `src/utils`     | Pure utilities (merge, clone, type helpers)              |
+| `src/apps`      | Reusable app stacks (REST, WebSocket, CLI scaffolds)     |
+| `tests/`        | Full test suite, unit + integration                      |
+| *(no `mod.ts`)* | Modules are standalone, import them individually         |
 
 ---
 
 ## 🔧 **Code Examples**
 
-### ✅ Using a typed Deno KV slot
+### ✅ Typed Deno KV slot
 
 ```ts
 import { KvSlot } from 'https://deno.land/x/sloth@<version>/src/deno/kv/slot.class.ts'
@@ -81,25 +80,26 @@ console.log(result) // { a: 1, b: { c: 2, d: 3 } }
 
 ## 🧩 **Available Modules**
 
-| Module                       | Description                                    |
-| ---------------------------- | ---------------------------------------------- |
-| `src/deno/env`               | Environment management, `.env` file reading    |
-| `src/deno/kv`                | Typed abstraction over Deno KV                 |
-| `src/utils/deep-merge.ts`    | Deep object merge utility                      |
-| `src/apps/rest` *(optional)* | Modular REST stack with domain-driven routing  |
-| *(more coming soon)*         | Additional micro-modules in active development |
+| Module                       | Description                            |
+| ---------------------------- | -------------------------------------- |
+| `src/deno/env`               | `.env` file reading, environment tools |
+| `src/deno/kv`                | Typed abstraction over Deno KV         |
+| `src/utils/deep-merge.ts`    | Deep object merge utility              |
+| `src/apps/rest` *(optional)* | Modular REST stack, domain-driven      |
+| *(more coming soon)*         | Active micro-module development        |
 
 ---
 
-## 📚 **Per-Module Documentation**
+## 📚 **Documentation**
 
-Each module comes with:
+Full per-module documentation is hosted externally:
 
-* ✅ Clear public API
-* ✅ Practical examples
-* ✅ Real-world use cases
+📖 [Read the docs](https://socle-commun.github.io/sloth)
 
-Check the `docs/` directory for detailed write-ups.
+Each module includes:
+✅ Public API
+✅ Practical examples
+✅ Real-world use cases
 
 ---
 
@@ -108,12 +108,12 @@ Check the `docs/` directory for detailed write-ups.
 We **welcome contributions**!
 Please follow these simple rules:
 
-* Use **strict TypeScript typing**.
-* Keep modules **self-contained** — one module = one file or one folder.
-* Use **emoji-annotated commits** (we follow the “emoji-commit” convention 📝).
-* Provide examples and unit tests for every new module or feature.
+✅ Use **strict TypeScript typing**.
+✅ Keep modules **self-contained** (one module = one file or folder).
+✅ Follow **emoji-annotated commits** (we use the 📝 emoji-commit convention).
+✅ Provide **examples + tests** for every new feature.
 
-Feel free to submit pull requests, bug reports, or feature suggestions!
+Submit PRs, bug reports, or feature requests anytime!
 
 ---
 
@@ -121,8 +121,8 @@ Feel free to submit pull requests, bug reports, or feature suggestions!
 
 ✅ Initial release
 🔜 Publish on Deno Land with semantic versioning
-🔜 Expand micro-modules and add more real-world integrations
-🔜 Improve test coverage and CI pipelines
+🔜 Expand micro-module library
+🔜 Strengthen test coverage + CI pipelines
 
 ---
 
