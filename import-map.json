@@ -8,6 +8,7 @@
     "@hono/zod-openapi": "npm:@hono/zod-openapi",
     "swagger-themes": "npm:swagger-themes",
     "hono/cors": "npm:hono/cors",
-    "hono": "https://deno.land/x/hono@v4.3.7/mod.ts"
+    "hono": "https://deno.land/x/hono@v4.3.7/mod.ts",
+    "@hono/swagger-ui": "npm:@hono/swagger-ui"
   }
 }

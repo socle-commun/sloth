@@ -1,26 +1,21 @@
 {
   // 🌐 Version du projet
   "name": "@socle-commun/sloth",
-  "version": "0.1.0",
-
-  "exports": {
-    "./kv-slot": "./src/deno/utils/kv/slot.class.ts",
-    "./load": "./src/deno/utils/env/load.ts",
-    "./deep-merge": "./src/utils/deep-merge.ts",
-    "./rest-app-domain": "./src/deno/apps/rest/domain.class.ts",
-    "./rest-app-route": "./src/deno/apps/rest/route.class.ts",
-    "./rest-app": "./src/deno/apps/rest/mod.ts"
-  },
+  "version": "0.2.0",
 
   // 🏁 Point d'entrée principal
   "main": "src/app/rest/main.ts",
+
+  "exports": {
+    "./*": "./src/*"
+  },
 
   // 🚀 Tasks Deno disponibles (via `deno task <name>`)
   "tasks": {
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",
-    "dev": "deno serve --unstable-kv --allow-all ./src/app/rest/main.ts",                   // Lancer en mode dev
-    "serve": "deno serve --unstable-kv --allow-all ./src/app/rest/main.ts",              // Serveur avec deno serve
+    "dev": "deno serve --unstable-kv --allow-all",                  
+    "serve": "deno serve --unstable-kv --allow-all",             
     "test:dev": "deno test --unstable-kv --allow-all --watch",                           // Tests avec watch en dev
     "test:dev:coverage": "deno test --unstable-kv --allow-all --coverage && deno coverage", // Tests + couverture en local
     "test:ci": "deno test --unstable-kv --allow-all --reporter=junit --junit-path=./.dist/report.xml --coverage" // CI: tests + rapport JUnit + couverture
@@ -68,8 +63,6 @@
   // 📦 Configuration des modules Node (auto = géré automatiquement par Deno)
   "nodeModulesDir": "auto",
 
-  // 🔗 Import map (pour mapper les dépendances externes)
-  "importMap": "import-map.json",
   "repository": "https://github.com/socle-commun/sloth",
   "license": "MIT"
 }

@@ -25,13 +25,6 @@
 Sloth does **not** expose a global `mod.ts`.
 Instead, **import only the modules you want**:
 
-```ts
-import { KvSlot } from 'https://deno.land/x/sloth@<version>/src/deno/kv/slot.class.ts'
-import { deepMerge } from 'https://deno.land/x/sloth@<version>/src/utils/deep-merge.ts'
-```
-
-Use `import_map.json` if you prefer cleaner aliases (example provided in the docs).
-
 ---
 
 ## 🏗️ **Project Structure**

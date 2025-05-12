@@ -1,4 +1,4 @@
-import { MiddlewareHandler } from 'npm:hono'
+import { MiddlewareHandler } from 'https://deno.land/x/hono@v4.3.7/mod.ts'
 import getEnv from '../../../utils/env/mod.ts'
 
 export type ENV  = 'BEARER_TOKEN'

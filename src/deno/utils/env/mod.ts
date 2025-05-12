@@ -1,5 +1,5 @@
-import { load } from "dotenv";
-import { join } from "path";
+import { load } from "https://deno.land/std@0.224.0/dotenv/mod.ts";
+import { join } from "https://deno.land/std@0.224.0/path/mod.ts";
 
 // The `.env` file is only used in development.
 // The try/catch block prevents the MissingEnvVarsError when no .env file is present.

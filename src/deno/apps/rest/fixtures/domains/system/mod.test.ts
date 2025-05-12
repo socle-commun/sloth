@@ -4,7 +4,7 @@ import { startTestServer } from '../../tests/helper.ts'
 Deno.test('GET /status returns system status', async () => {
     const server = await startTestServer()
     try {
-        const res = await fetch(server.url + '/status')
+        const res = await fetch(server.url + '/app/status')
         if (res.status !== 200) throw new Error(`Expected 200, got ${res.status}`)
         const json = await res.json()
         if (typeof json.uptime !== 'number' || typeof json.timestamp !== 'string') {
@@ -18,7 +18,7 @@ Deno.test('GET /status returns system status', async () => {
 Deno.test('GET /health returns status ok and valid payload', async () => {
     const server = await startTestServer()
     try {
-        const response = await fetch(`${server.url}/health`)
+        const response = await fetch(`${server.url}/app/health`)
         if (response.status !== 200) {
             throw new Error(`Expected 200 OK, got ${response.status}`)
         }
