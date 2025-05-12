@@ -1,6 +1,6 @@
-import { Context } from 'hono'
-import { z } from 'zod'
-import { Domain } from '@/deno/apps/rest/domain.class.ts'
+import { Context } from 'https://deno.land/x/hono@v4.3.7/mod.ts'
+import { z } from 'npm:zod'
+import { Domain } from '../../../domain.class.ts'
 
 const StatusResponseSchema = z.object({
     uptime: z.number().describe('System uptime in seconds'),

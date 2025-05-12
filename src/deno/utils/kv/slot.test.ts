@@ -1,7 +1,7 @@
 import { assertRejects } from "https://deno.land/std/testing/asserts.ts"
 import { assertEquals } from "https://deno.land/std@0.224.0/assert/assert_equals.ts"
 import { KvSlot, KvSlotValidationError } from "./slot.class.ts"
-import { z } from "zod"
+import { z } from 'npm:zod'
 
 interface KvMock {
     store: Map<string, unknown>

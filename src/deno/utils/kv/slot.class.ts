@@ -1,4 +1,4 @@
-import { ZodObject, ZodRawShape, z } from 'zod'
+import { ZodObject, ZodRawShape, z } from 'npm:zod'
 import { kv } from './instance.ts'
 
 /**

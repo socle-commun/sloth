@@ -1,6 +1,6 @@
-import { z } from 'zod'
-import { Domain } from '@/deno/apps/rest/domain.class.ts'
-import { Context } from 'hono'
+import { z } from 'npm:zod'
+import { Domain } from '../../../../domain.class.ts'
+import { Context } from 'https://deno.land/x/hono@v4.3.7/mod.ts'
 
 const HealthResponseSchema = z.object({
     status: z.enum(['ok', 'degraded'], {

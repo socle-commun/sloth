@@ -1,5 +1,5 @@
-import { z } from 'zod';
-import { createRoute, RouteConfig } from '@hono/zod-openapi';
+import { z } from 'npm:zod';
+import { createRoute, RouteConfig } from 'npm:@hono/zod-openapi';
 import { deepMerge } from '../../../../utils/deep-merge.ts'
 
 const ErrorResponseSchema = z.object({

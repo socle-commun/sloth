@@ -1,7 +1,7 @@
-import { OpenAPIHono } from '@hono/zod-openapi';
-import { SwaggerTheme, SwaggerThemeNameEnum } from "swagger-themes";
-import { cors } from 'hono/cors';
-import { $Import } from '$import'
+import { OpenAPIHono } from 'npm:@hono/zod-openapi';
+import { SwaggerTheme, SwaggerThemeNameEnum } from "npm:swagger-themes";
+import { cors } from 'npm:hono/cors';
+import { $Import } from 'https://deno.land/x/sloth_import@1.1.0/mod.ts'
 import getEnv from '../../utils/env/mod.ts';
 import { $AppRestOptions } from './types.ts'
 import { Domain } from './domain.class.ts'
@@ -17,7 +17,8 @@ export type ENV =
     "DOC_PATH" |
     "UI_PATH" |
     "BEARER_TOKEN" |
-    "APP_URL"
+    "APP_URL" |
+    "BASE_URL"
 
 /**
  * $AppRest
@@ -60,6 +61,7 @@ export default async function $AppRest(__entryDir: string, options: Partial<$App
     const appName = getEnv<ENV>("APP_NAME", opts.appName) as string;
     const isProd = getEnv<ENV>("ENV", opts.defaultEnv) === 'production'
     const appUrl = getEnv<ENV>("APP_URL") as string;
+    const baseUrl = getEnv<ENV>("BASE_URL", "/app") as string;
     const version = await getProjectVersion()
 
     //📌 Afficher un message d'initialisation
@@ -83,7 +85,7 @@ export default async function $AppRest(__entryDir: string, options: Partial<$App
         app.use("*", (await import('./_middlewares/security-headers.ts')).default as (c: unknown, next: unknown) => Promise<void>)
     }
 
-    app.use('*', bearerAuthMiddleware)
+    app.use(baseUrl, bearerAuthMiddleware  as (c: unknown, next: unknown) => Promise<void>)
 
     app.onError((err, c) => {
         console.error(err.stack)
@@ -130,6 +132,7 @@ export default async function $AppRest(__entryDir: string, options: Partial<$App
         })
         domain.routes.forEach((route) => {
             console.log(`📜 [${route.domain.name}] ${route.method.toUpperCase()} (${route.path})`)
+            route.path = baseUrl + route.path;
             // deno-lint-ignore no-explicit-any
             app.openapi(route.schema, route.handler as any)
         })

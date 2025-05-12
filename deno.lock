@@ -1186,13 +1186,5 @@
     "https://deno.land/x/sloth_import@1.1.0/types.ts": "c492095ef142387553a9f317b6db6084878a84bd853e6fb0064e1d9352aa3e2c",
     "https://esm.sh/zod@3.24.4": "5a1c52369b00ff7f07ddfc1b926a5e5fd4b3a71ed977551e139651d2bf48c168",
     "https://esm.sh/zod@3.24.4/denonext/zod.mjs": "0c59b8fa3517c09f174814d332fbdfd826e0b726f3add9defd39976d5a122f86"
-  },
-  "workspace": {
-    "dependencies": [
-      "npm:@hono/zod-openapi@*",
-      "npm:hono@*",
-      "npm:swagger-themes@*",
-      "npm:zod@*"
-    ]
   }
 }

@@ -1,5 +1,5 @@
 import { $AppRestOptions } from './types.ts'
-import { SwaggerUI } from '@hono/swagger-ui';
+import { SwaggerUI } from 'npm:@hono/swagger-ui';
 
 export const defaultOptions: $AppRestOptions = {
     appName: 'Unknown App',
