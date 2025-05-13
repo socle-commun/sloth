@@ -100,7 +100,6 @@ export default async function $AppRest(import_meta_url: string, options: Partial
     // Lance la fonction par défaut du mod pour chargement des routes.
     const domainsPromises: Promise<Domain>[] = []
     $Import.config.logging = true
-    $Import.config.entryFileName = 'mod.ts'
     await $Import(import_meta_url, ['./domains/'], {
         callback: (mod: { default: () => Promise<Domain> }) => {
             return new Promise((resolve, reject) => {
