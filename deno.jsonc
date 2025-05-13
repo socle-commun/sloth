@@ -1,7 +1,7 @@
 {
   // 🌐 Version du projet
   "name": "@socle-commun/sloth",
-  "version": "0.2.0",
+  "version": "0.1.0",
 
   // 🏁 Point d'entrée principal
   "main": "src/app/rest/main.ts",
@@ -14,8 +14,8 @@
   "tasks": {
     "docs:dev": "npx vitepress dev docs",
     "docs:build": "npx vitepress build docs",
-    "dev": "deno serve --unstable-kv --allow-all",                  
-    "serve": "deno serve --unstable-kv --allow-all",             
+    "dev": "deno serve --unstable-kv --allow-all ./src/deno/apps/rest/fixtures/main.ts",                   // Lancer en mode dev
+    "serve": "deno serve --unstable-kv --allow-all ./src/deno/apps/rest/fixtures/main.ts",              // Serveur avec deno serve
     "test:dev": "deno test --unstable-kv --allow-all --watch",                           // Tests avec watch en dev
     "test:dev:coverage": "deno test --unstable-kv --allow-all --coverage && deno coverage", // Tests + couverture en local
     "test:ci": "deno test --unstable-kv --allow-all --reporter=junit --junit-path=./.dist/report.xml --coverage" // CI: tests + rapport JUnit + couverture
