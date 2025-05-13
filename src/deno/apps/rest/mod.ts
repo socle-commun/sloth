@@ -1,7 +1,7 @@
 import { OpenAPIHono } from 'npm:@hono/zod-openapi';
 import { SwaggerTheme, SwaggerThemeNameEnum } from "npm:swagger-themes";
 import { cors } from 'npm:hono/cors';
-import { $Import } from 'https://deno.land/x/sloth_import@1.1.1/mod.ts'
+import { $Import } from 'https://deno.land/x/sloth_import@1.2.0/mod.ts'
 import getEnv from '../../utils/env/mod.ts';
 import { $AppRestOptions } from './types.ts'
 import { Domain } from './domain.class.ts'
@@ -100,6 +100,7 @@ export default async function $AppRest(import_meta_url: string, options: Partial
     // Lance la fonction par défaut du mod pour chargement des routes.
     const domainsPromises: Promise<Domain>[] = []
     $Import.config.logging = true
+    $Import.config.importCallback = options.importCallback;
     await $Import(import_meta_url, ['./domains/'], {
         callback: (mod: { default: () => Promise<Domain> }) => {
             return new Promise((resolve, reject) => {

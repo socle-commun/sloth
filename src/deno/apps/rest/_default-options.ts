@@ -7,6 +7,9 @@ export const defaultOptions: $AppRestOptions = {
     uiPath: '/ui',
     appUrl: 'http://localhost:8000',
     defaultEnv: 'production',
+    importCallback: (url: string) => {
+        return import(`../../../../${url}`)
+    },
     uiHtmlFactory: (themeContent: string, docPath: string, appName: string, version: string): string => {
         return `
         <html lang="en">
