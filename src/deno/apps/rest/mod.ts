@@ -1,7 +1,7 @@
 import { OpenAPIHono } from 'npm:@hono/zod-openapi';
 import { SwaggerTheme, SwaggerThemeNameEnum } from "npm:swagger-themes";
 import { cors } from 'npm:hono/cors';
-import { $Import } from 'https://deno.land/x/sloth_import@1.1.0/mod.ts'
+import { $Import } from 'https://deno.land/x/sloth_import@1.1.1/mod.ts'
 import getEnv from '../../utils/env/mod.ts';
 import { $AppRestOptions } from './types.ts'
 import { Domain } from './domain.class.ts'
@@ -33,7 +33,7 @@ export type ENV =
  * - Configure OpenAPI documentation and Swagger UI endpoints.
  * 
  * Parameters:
- * @param __entryDir {string} — Root directory path where domain modules are located (typically './src').
+ * @param import_meta_url {string} — Root directory path where domain modules are located (typically './src').
  * @param options {Partial<$AppRestOptions>} — Optional configuration overrides.
  * 
  * Returns:
@@ -51,7 +51,7 @@ export type ENV =
  * - Domains must export a default function that returns a `Domain` object with routes.
  * - Routes are expected to self-register on their associated domain.
  */
-export default async function $AppRest(__entryDir: string, options: Partial<$AppRestOptions> = defaultOptions) {
+export default async function $AppRest(import_meta_url: string, options: Partial<$AppRestOptions> = defaultOptions) {
     //📌 Merge des options par défaut si seulement une partie des options est définie
     const opts: $AppRestOptions = { ...options, ...defaultOptions }
 
@@ -100,8 +100,7 @@ export default async function $AppRest(__entryDir: string, options: Partial<$App
     // Lance la fonction par défaut du mod pour chargement des routes.
     const domainsPromises: Promise<Domain>[] = []
     $Import.config.logging = true
-    $Import.config.entryFileName = 'mod.ts'
-    await $Import(__entryDir, ['./domains/'], {
+    await $Import(import_meta_url, ['./domains/'], {
         callback: (mod: { default: () => Promise<Domain> }) => {
             return new Promise((resolve, reject) => {
                 try {
