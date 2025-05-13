@@ -1,7 +1,7 @@
 {
   // 🌐 Version du projet
   "name": "@socle-commun/sloth",
-  "version": "0.1.0",
+  "version": "0.1.1",
 
   // 🏁 Point d'entrée principal
   "main": "src/app/rest/main.ts",
