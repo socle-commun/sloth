@@ -26,4 +26,5 @@ export type $AppRestOptions = {
     appUrl: string;
     defaultEnv: string;
     uiHtmlFactory: (themeContent: string, docPath: string, appName: string, version: string) => string;
+    importCallback: (path: string) => Promise<unknown>;
 }
